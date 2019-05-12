@@ -1,0 +1,89 @@
+<mvc:View 
+	controllerName="budget_tracker.Budget_Tracker.controller.App" 
+	xmlns:mvc="sap.ui.core.mvc" 
+	displayBlock="true" 
+	xmlns ="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form">
+	
+	<Shell id="shell">
+		<App id="app">
+			<pages>
+				<Page id="page" title="{i18n>title}">
+					<content>
+						
+						<l:HorizontalLayout>
+							<Button 
+								enabled="true"
+								icon="sap-icon://add" 
+								text="{i18n>addToTableButton}"
+								press="onClickAddButton"
+								class="sapUiSmallMarginBegin sapUiSmallMarginEnd"/>
+							<Input
+								id="inputNameProduct"
+								type="Text"
+								valueLiveUpdate="true"
+								value="{newInputsID>/product}"
+								description="{i18n>inputNameProduct}"/>
+							<Input
+								id="inputNamePrice"
+								type="Number"
+								value="{newInputsID>/price}"
+								description="{i18n>inputNamePrice}"/>
+							<Input
+								id="inputNameSource"
+								type="Text"
+								value="{newInputsID>/source}"
+								description="{i18n>inputNameSource}"/>
+						</l:HorizontalLayout>
+						
+						<Table
+							headerText="{
+								path:'i18n>pastTransactionsLabel'
+							}"
+							items="{
+								path:'TableItemsID>/transactions'
+								}"
+							id="MainTable"
+							>
+
+							<columns>
+								<Column width="5rem">
+									<Button 
+										icon="sap-icon://delete"
+										press="onClickTrashButton"/>
+								</Column>
+								<Column width="11rem">
+									<Label text="{i18n>inputNameProduct}"/>
+								</Column>
+								<Column>
+									<Label text="{i18n>inputNamePrice}"/>
+								</Column>
+								<Column>
+									<Label text="{i18n>inputNameSource}"/>
+								</Column>
+							</columns>
+							
+							<items>
+
+								<ColumnListItem>
+									<cells>
+										<CheckBox
+											selected="{path: 'TableItemsID>selected'}"/>
+										<Text
+											text="{path: 'TableItemsID>product'}"/>
+										<Text
+											text="{path: 'TableItemsID>price'}"/>
+										<Text
+											text="{path: 'TableItemsID>source'}"/>
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+						
+					</content>
+				</Page>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>
